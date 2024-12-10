@@ -19,8 +19,10 @@ export const ProductsProvider = ({ children }) => {
                     price: parseFloat(product.preco),
                     image: product.imagens ? product.imagens[0] : null,
                     description: product.descricao,
+                    qtdEstoque: product.qtdEstoque,
                     slug: product.nome.toLowerCase().replace(/ /g, '-')
                 })));
+                console.log(response.data);
             } catch (error) {
                 console.error('Error fetching products:', error);
             } finally {

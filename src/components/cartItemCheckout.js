@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { changeQuantity } from '../stores/cart';
 
 const CartItemCheckout = (props) => {
-    const { productId, quantity } = props.data;
+    const { productId, quantity, qtdEstoque } = props.data;
     const { products } = useProducts();
     const [detail, setDetail] = useState(null);
     const dispatch = useDispatch();
@@ -15,17 +15,21 @@ const CartItemCheckout = (props) => {
     }, [productId, products]);
 
     const handleMinusQuantity = () => {
-        dispatch(changeQuantity({
-            productId: productId,
-            quantity: quantity - 1
-        }));
+        if (quantity > 1) {
+            dispatch(changeQuantity({
+                productId: productId,
+                quantity: quantity - 1
+            }));
+        }
     };
 
     const handlePlusQuantity = () => {
-        dispatch(changeQuantity({
-            productId: productId,
-            quantity: quantity + 1
-        }));
+        if (quantity < qtdEstoque) {
+            dispatch(changeQuantity({
+                productId: productId,
+                quantity: quantity + 1
+            }));
+        }
     };
 
     if (!detail) {
@@ -38,9 +42,9 @@ const CartItemCheckout = (props) => {
             <h3>{detail.name}</h3>
             <p id='produto-preço2'>R${(detail.price * quantity).toFixed(2)}</p>
             <div className='w-20 flex justify-between gap-2'>
-                <button className='bg-gray-200 rounded-full w-6 h-6 text-cyan-600' onClick={handleMinusQuantity}>-</button>
+                <button className='bg-gray-200 rounded-full w-6 h-6 text-cyan-600' onClick={handleMinusQuantity} disabled={quantity === 1}>-</button>
                 <span>{quantity}</span>
-                <button className='bg-gray-200 rounded-full w-6 h-6 text-cyan-600' onClick={handlePlusQuantity}>+</button>
+                <button className='bg-gray-200 rounded-full w-6 h-6 text-cyan-600' onClick={handlePlusQuantity} disabled={quantity === qtdEstoque}>+</button>
             </div>
         </div>
     );

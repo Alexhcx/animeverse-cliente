@@ -6,14 +6,33 @@ import { addToCart } from '../stores/cart';
 
 const ProductCart = (props) => {
     const carts = useSelector(store => store.cart.items);
-    const { id, name, price, image, slug } = props.data;
+    const { id, name, price, image, qtdEstoque, slug } = props.data;
     const dispatch = useDispatch();
     const handleAddToCart = () => {
+        // Obtém o carrinho do localStorage
+        const cartItems = JSON.parse(localStorage.getItem('carts')) || [];
+
+        // Procura o produto no carrinho
+        const existingCartItem = cartItems.find(item => item.productId === id);
+
+        // Calcula a quantidade total do produto no carrinho (se existir)
+        const currentQuantityInCart = existingCartItem ? existingCartItem.quantity : 0;
+
+        // Calcula a quantidade máxima que pode ser adicionada
+        const maxQuantityToAdd = qtdEstoque - currentQuantityInCart;
+
+        // Impede a adição se a quantidade máxima for zero
+        if (maxQuantityToAdd <= 0) {
+            alert("Produto sem estoque!")
+            return;
+        }
+
+        // Adiciona o produto ao carrinho (no máximo a quantidade disponível)
         dispatch(addToCart({
             productId: id,
-            quantity: 1
+            quantity: Math.min(1, maxQuantityToAdd)
         }));
-    }
+    };
     return (
         <div className='bg-white p-5 rounded-xl shadow-sm flex flex-col justify-between'>
             <Link to={slug}>

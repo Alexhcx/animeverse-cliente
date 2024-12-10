@@ -18,23 +18,34 @@ function Checkout() {
   const handleCheckout = async () => {
     try {
       const orderData = {
-        userId: localStorage.getItem('userId'), 
+        userId: localStorage.getItem('userId'),
         status: "PAGAMENTO APROVADO",
         valorTotal: subtotal.toFixed(2),
-        metodoEnvio: "SEDEX", 
+        metodoEnvio: "SEDEX",
         custoEnvio: "GRATIS",
         numeroRastreamento: "12345678910",
-        produtos: CartItemCheckouts.map(item => ({ 
-          id: item.productId, 
-          qtdProdutos: item.quantity 
+        produtos: CartItemCheckouts.map(item => ({
+          id: item.productId,
+          qtdProdutos: item.quantity
         })),
-        metodoPagamento: paymentMethod, 
+        metodoPagamento: paymentMethod,
         statusPagamento: "APROVADO"
       };
 
       const response = await axios.post('http://localhost:8080/anime/api/pedidos', orderData);
 
+      console.log("Orderdata:  " + response);
+
       if (response.status === 201) {
+        const estoqueDTO = {
+          itens: CartItemCheckouts.map(item => ({
+            productId: item.productId,
+            quantidade: item.quantity
+          }))
+        };
+        console.log("EstoqueDTO:  " + estoqueDTO);
+        await axios.put(`http://localhost:8080/anime/api/produtos/estoque`, estoqueDTO);
+
         localStorage.setItem('carts', JSON.stringify([]));
         alert('Pedido efetuado com sucesso!', response.data);
       } else {
@@ -43,8 +54,6 @@ function Checkout() {
     } catch (error) {
       alert('Erro na requisição!', error);
     }
-
-    window.location.reload();
   };
 
   useLayoutEffect(() => {
@@ -119,7 +128,7 @@ function Checkout() {
               </label>
             </div>
             <div>
-              <Link to='/' onClick={handleCheckout} className='m-1 bg-black text-white font-bold p-2 rounded-xl pl-3 pr-3'>Checkout</Link>
+              <Link onClick={handleCheckout} className='m-1 bg-black text-white font-bold p-2 rounded-xl pl-3 pr-3'>Checkout</Link>
             </div>
           </div>
         </div>
