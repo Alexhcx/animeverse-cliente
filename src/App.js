@@ -1,3 +1,5 @@
+//Aqui demostra como estamos usando o contexto de Productscontext em um componente, envolvendo tota a aplicação com ele.
+
 import './App.css';
 import Layout from './components/layout';
 import Home from './pages/home';

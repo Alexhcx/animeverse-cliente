@@ -1,3 +1,13 @@
+//Este componente React implementa um formulário de login com validação de email e senha. 
+//Ele captura as entradas do usuário para email e senha, exibindo mensagens de erro caso os 
+//formatos estejam inválidos. Ao submeter o formulário, ele envia uma requisição POST para a API 
+//usando axiosInstance. Se a autenticação for bem-sucedida (status 200), o componente armazena os 
+//dados do usuário no localStorage, exibe um alerta de sucesso e redireciona o usuário para a página inicial (/), 
+//recarregando a página para refletir as mudanças de login. Em caso de erro, mensagens informativas são exibidas 
+//ao usuário. O componente utiliza useState para gerenciar o estado dos campos de entrada, mensagens de erro e 
+//useNavigate para lidar com o redirecionamento.
+
+
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axiosInstance from '../axiosConfig'; // Importe sua configuração do axios

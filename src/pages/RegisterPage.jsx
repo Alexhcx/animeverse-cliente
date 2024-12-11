@@ -1,3 +1,10 @@
+//Este componente React representa um formulário de cadastro de usuário. 
+//Ele coleta informações como nome, gênero, email, senha, endereço e dados de contato 
+//através de diversos campos de entrada. Ao submeter o formulário, a função handleSubmit valida os dados e envia uma requisição POST para a API, 
+//cadastrando o usuário no sistema. Se o cadastro for bem-sucedido, o usuário é redirecionado para a página /home. 
+//O componente utiliza o axiosInstance para realizar a requisição e o useNavigate para redirecionar o usuário após o cadastro. 
+//Além disso, oferece a opção de redirecionamento para a página de login caso o usuário já possua uma conta.
+
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axiosInstance from '../axiosConfig';

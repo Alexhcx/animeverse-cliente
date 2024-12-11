@@ -1,3 +1,11 @@
+//Este componente React, ProductCart, representa um cartão de produto em um e-commerce, exibindo 
+//informações como nome, preço e imagem do produto. Sua principal funcionalidade é adicionar o produto 
+//ao carrinho de compras, considerando a disponibilidade em estoque. Ele utiliza o useSelector para acessar 
+//o estado do carrinho do Redux e o useDispatch para despachar a ação addToCart. Ao clicar no botão "Adicionar ao Carrinho", 
+//a função handleAddToCart verifica a quantidade do produto em estoque e no carrinho, impedindo a adição caso não haja estoque suficiente. 
+//Em seguida, despacha a ação addToCart com o ID do produto e a quantidade a ser adicionada, atualizando o estado do carrinho.
+
+
 import React from 'react'
 import { Link } from 'react-router-dom';
 import iconCart from '../assets/images/iconCart.png'

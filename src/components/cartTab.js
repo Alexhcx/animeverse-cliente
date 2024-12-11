@@ -1,3 +1,5 @@
+//Aqui é o componente da tab que mostra os itens do carrinho e redireciona para o checkout
+
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import CartItem from './cartItem';

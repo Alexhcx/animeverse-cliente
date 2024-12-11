@@ -1,3 +1,10 @@
+//Este componente React representa a página de finalização de compra (checkout) de um e-commerce. Ele exibe os itens do carrinho, 
+//calcula o subtotal, permite a escolha do método de pagamento e envia os dados do pedido para a API. O componente Checkout utiliza 
+//o useSelector para acessar os itens do carrinho armazenados no Redux e o useState para gerenciar o método de pagamento e o subtotal. 
+// a função handleCheckout  envia uma requisição POST para a API com os detalhes do pedido, incluindo informações do usuário, produtos, 
+//método de pagamento e status. Após a criação do pedido, ele atualiza o estoque dos produtos via PUT request e limpa o carrinho de compras. 
+//O componente também inclui lógica para lidar com erros nas requisições e exibir alertas ao usuário.
+
 import React, { useState, useEffect, useLayoutEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';

@@ -1,3 +1,12 @@
+//O componente React Header representa o cabeçalho de um e-commerce, exibindo o nome do usuário logado,
+//a quantidade total de itens no carrinho e um botão para abrir a aba do carrinho. 
+//Ele usa o useSelector para acessar os itens do carrinho do Redux e calcular a quantidade total de produtos, 
+//atualizando o estado totalQuantity com useEffect. O botão do carrinho, quando clicado, 
+//dispara a função handleOpenTabCart, que despacha a ação toggleStatusTab para abrir ou fechar a aba 
+//lateral do carrinho. Além disso, o componente exibe o nome do usuário logado, obtido do localStorage, 
+//e oferece a opção de logout através da função handleLogout, que remove os dados do usuário do localStorage 
+//e redireciona para a página inicial.
+
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import iconCart from '../assets/images/iconCart.png';

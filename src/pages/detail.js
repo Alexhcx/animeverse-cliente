@@ -1,3 +1,6 @@
+//essa é a pagima de detalhes do produto, onde o usuário pode ver mais informações sobre o produto 
+//e adicionar ao carrinho
+
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useProducts } from '../ProductsContext';

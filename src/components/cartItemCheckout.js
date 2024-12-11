@@ -1,3 +1,5 @@
+//Componete para mostrar os itens do carinha na tela de checkout
+
 import React, { useState, useEffect } from 'react';
 import { useProducts } from '../ProductsContext';
 import { useDispatch } from 'react-redux';
